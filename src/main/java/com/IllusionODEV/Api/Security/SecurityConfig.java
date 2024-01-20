@@ -3,6 +3,7 @@ package com.IllusionODEV.Api.Security;
 
 import lombok.RequiredArgsConstructor;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig  extends WebSecurityConfiguration {
 
     private final UserDetailsService userDetailsService;
-    private  BCryptPasswordEncoder bCryptPasswordEncoder;
+    private   BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private static final String[] AUTH_WHITELIST = {
             // -- Swagger UI v2
@@ -44,7 +45,7 @@ public class SecurityConfig  extends WebSecurityConfiguration {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
-    @Override
+
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -56,8 +57,8 @@ public class SecurityConfig  extends WebSecurityConfiguration {
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 
 
